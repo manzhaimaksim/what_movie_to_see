@@ -4,7 +4,9 @@ require 'open-uri'
 require_relative 'lib/film'
 require_relative 'lib/film_collection'
 
-films = FilmCollection.from_list
+file_path = __dir__ + '/data/Топ-500 — списки лучших фильмов — КиноПоиск.html'
+films = FilmCollection.from_list(file_path)
+
 all_directors = films.map(&:director)
 
 puts "Программа 'Фильм на вечер'"

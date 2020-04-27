@@ -1,7 +1,7 @@
 class FilmCollection
-  def self.from_list
+  def self.from_list(html_file)
     films_list = []
-    uri = ''
+    uri = html_file
     doc = Nokogiri::HTML(open(uri))
 
     doc.css('table#itemList .news').each do |film|
