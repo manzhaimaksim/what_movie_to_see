@@ -4,8 +4,9 @@ require 'open-uri'
 require_relative 'lib/film'
 require_relative 'lib/film_collection'
 
-file_path = __dir__ + '/data/Топ-500 — списки лучших фильмов — КиноПоиск.html'
-films = FilmCollection.from_list(file_path)
+PAGE_URL = "https://www.kinopoisk.ru/top/navigator/m_act[num_vote]/1000/m_act[is_film]/on/order/rating/perpage/200/#results"
+
+films = FilmCollection.from_list(PAGE_URL.gsub("[","%5B").gsub("]","%5D"))
 
 all_directors = films.map(&:director)
 

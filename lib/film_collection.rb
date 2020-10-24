@@ -4,13 +4,17 @@ class FilmCollection
     uri = html_file
     doc = Nokogiri::HTML(open(uri))
 
-    doc.css('table#itemList .news').each do |film|
-      title = film.css('.all').text
-      director = film.at_css('.gray_text a').text
-      year = film.css('span').text.split(' ').find { |string| string.match('\([0-9]{4}\)') }.delete('()')
+    doc.css('div .item').each do |film|
+      title = film.css('.info .name a').text
+      director = film.css('.info .gray_text i .lined').text
+      year = film.css('.info .name span').text.split(' ').find { |string| string.match('\([0-9]{4}\)') }
+      year.delete!('()') unless year.nil?
 
-      films_list << Film.new(title, director, year)
+      unless title.empty? && director.empty? && year.nil?
+        films_list << Film.new(title, director, year)
+      end
     end
+
     films_list
   end
 
