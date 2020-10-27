@@ -1,6 +1,6 @@
 module FilmCollection
   def self.from_list(html_page)
-    @films = []
+    films = []
     doc = Nokogiri::HTML(URI.open(html_page))
 
     doc.css('div .item').each do |film|
@@ -10,13 +10,13 @@ module FilmCollection
       year.delete!('()') unless year.nil?
 
       unless title.empty? && director.empty? && year.nil?
-        @films << Film.new(title, director, year)
+        films << Film.new(title, director, year)
       end
     end
-    @films
+    films
   end
 
-  def self.directors
-    @directors ||= @films.map(&:director).uniq.sort
+  def self.directors(films)
+    films.map(&:director).uniq.sort
   end
 end

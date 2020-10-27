@@ -10,7 +10,7 @@ films = FilmCollection.from_list(PAGE_URL.gsub("[","%5B").gsub("]","%5D"))
 
 puts "Программа 'Фильм на вечер'"
 
-directors = FilmCollection.directors
+directors = FilmCollection.directors(films)
 
 directors.each_with_index do |director, index|
   puts "#{index + 1}. #{director}"
