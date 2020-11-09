@@ -4,11 +4,8 @@ require 'open-uri'
 require_relative 'lib/film'
 require_relative 'lib/film_collection'
 
-PAGE_URL = "https://www.kinopoisk.ru/top/navigator/m_act[num_vote]/1000/m_act[is_film]/on/order/rating/perpage/200/#results"
-
-films = FilmCollection.from_list(PAGE_URL.gsub("[","%5B").gsub("]","%5D"))
-
-puts "Программа 'Фильм на вечер'"
+films = FilmCollection.from_list
+puts 'Программа \'Фильм на вечер\''
 
 directors = FilmCollection.directors(films)
 
