@@ -4,8 +4,8 @@ require 'open-uri'
 require_relative 'lib/film'
 require_relative 'lib/film_collection'
 
-films = FilmCollection.from_list
-puts 'Программа \'Фильм на вечер\''
+films = FilmCollection.from_kinopoisk
+puts "Программа 'Фильм на вечер'"
 
 directors = FilmCollection.directors(films)
 
